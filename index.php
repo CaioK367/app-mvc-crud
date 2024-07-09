@@ -26,6 +26,8 @@
     </style>
 
 </head>
+
+
 <body>
     
     <div class="container">
@@ -36,7 +38,51 @@
                 <i class="bi bi-person-plus-fill"></i>
             </a>
         </h5>
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="thead">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOME</th>
+                        <th>E-MAIL</th>
+                        <th>CPF</th>
+                        <th>DT NASCIMENTO</th>
+                        <th>ENDEREÇO</th>
+                        <th>TELEFONE</th>
+                        <th colspan="3">AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Bruno Hoske</td>
+                        <td>brunohoske@gmail.com</td>
+                        <td>333.444.555-06</td>
+                        <td>23/02/2007</td>
+                        <td>Av. Castelo, 101</td>
+                        <td>(31) 91111-2321</td>
+                        <td>
+                            <form method="POST">
+                                <button class="btn btn-warning btn-xs">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="POST" onclick="return confirm('Tem certeza que deseja excluir?');">
+                                <button class="btn btn-danger btn-xs">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+         </div>
     </div>
+
+
 
     
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
