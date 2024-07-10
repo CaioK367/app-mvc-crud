@@ -1,3 +1,13 @@
+<?php
+    include 'model/Conexao.class.php';
+    include 'model/Manager.class.php';
+    include "utilities/Alerts.class.php";
+
+$manager = new Manager();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,7 +16,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="shortcut icon" href="./resources/person.png" type="image/x-icon">
-    <title>Clientes</title>
+    <title>Painel de usuários</title>
     <style type="text/css">
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
         body{
@@ -31,7 +41,12 @@
 <body>
     
     <div class="container">
-        <h2 class="text-center"> Lista de Clientes <i class="bi bi-people-fill"></i></h2>
+    <?php
+    if(isset($_GET['cod'])){
+        Alertas::success('Cadastro confirmado com sucesso');
+    }
+    ?>
+        <h2 class="text-center"> Lista de Usuários <i class="bi bi-people-fill"></i></h2>
 
         <h5 class="text-end">
             <a href="view/page_register.php" class="btn btn-primary btn-xs">
@@ -54,16 +69,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($manager->list_user() as $data):?>
                     <tr>
-                        <td>1</td>
-                        <td>Bruno Hoske</td>
-                        <td>brunohoske@gmail.com</td>
-                        <td>333.444.555-06</td>
-                        <td>23/02/2007</td>
-                        <td>Av. Castelo, 101</td>
-                        <td>(31) 91111-2321</td>
+                        <td><?= $data['id'] ?></td>
+                        <td><?= $data['name'] ?></td>
+                        <td><?= $data['email'] ?></td>
+                        <td><?= $data['cpf'] ?></td>
+                        <td><?= $data['birth'] ?></td>
+                        <td><?= $data['address'] ?></td>
+                        <td><?= $data['phone'] ?></td>
                         <td>
-                            <form method="POST">
+                            <form action="" method="POST">
                                 <button class="btn btn-warning btn-xs">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
@@ -77,6 +93,7 @@
                             </form>
                         </td>
                     </tr>
+                    <?php endforeach;?>
                 </tbody>
             </table>
          </div>
