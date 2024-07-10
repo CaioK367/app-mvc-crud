@@ -43,7 +43,20 @@ $manager = new Manager();
     <div class="container">
     <?php
     if(isset($_GET['cod'])){
-        Alertas::success('Cadastro confirmado com sucesso');
+        switch($_GET['cod']){
+            case 1:
+                Alertas::success('Cadastro confirmado com sucesso');
+                break;
+            case 2:
+                Alertas::success('Cadastro excluído com sucesso');
+                break;
+            case 3:
+                Alertas::success('Cadastro atualizado com sucesso');
+            default:
+                Alertas::danger('Nenhuma ação realizada');
+                break;
+        }       
+        
     }
     ?>
         <h2 class="text-center"> Lista de Usuários <i class="bi bi-people-fill"></i></h2>
@@ -79,14 +92,16 @@ $manager = new Manager();
                         <td><?= $data['address'] ?></td>
                         <td><?= $data['phone'] ?></td>
                         <td>
-                            <form action="" method="POST">
+                            <form action="view/page_update.php" method="POST">
+                                <input type="hidden" name="id" value=<?= $data['id'] ?>>
                                 <button class="btn btn-warning btn-xs">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                             </form>
                         </td>
                         <td>
-                            <form method="POST" onclick="return confirm('Tem certeza que deseja excluir?');">
+                            <form method="POST" action="controller/delete_user.php"  onclick="return confirm('Tem certeza que deseja excluir?');">
+                                <input type="hidden" name="id" value=<?= $data['id'] ?>>
                                 <button class="btn btn-danger btn-xs">
                                     <i class="bi bi-trash"></i>
                                 </button>
