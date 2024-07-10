@@ -1,12 +1,10 @@
 <?php
-    include 'model/Conexao.class.php';
-    include 'model/Manager.class.php';
-    include "utilities/Alerts.class.php";
+include 'model/Conexao.class.php';
+include 'model/Manager.class.php';
+include "utilities/Alerts.class.php";
 
 $manager = new Manager();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -37,7 +35,6 @@ $manager = new Manager();
 
 </head>
 
-
 <body>
     
     <div class="container">
@@ -52,8 +49,9 @@ $manager = new Manager();
                 break;
             case 3:
                 Alertas::success('Cadastro atualizado com sucesso');
+                break;
             default:
-                Alertas::danger('Nenhuma ação realizada');
+            Alertas::danger('Nenhuma ação realizada');
                 break;
         }       
         
@@ -78,7 +76,7 @@ $manager = new Manager();
                         <th>DT NASCIMENTO</th>
                         <th>ENDEREÇO</th>
                         <th>TELEFONE</th>
-                        <th colspan="3">AÇÕES</th>
+                        <th colspan="2">AÇÕES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,7 +91,7 @@ $manager = new Manager();
                         <td><?= $data['phone'] ?></td>
                         <td>
                             <form action="view/page_update.php" method="POST">
-                                <input type="hidden" name="id" value=<?= $data['id'] ?>>
+                                <input type="hidden" name="id" value="<?= $data['id'] ?>">
                                 <button class="btn btn-warning btn-xs">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
@@ -101,7 +99,7 @@ $manager = new Manager();
                         </td>
                         <td>
                             <form method="POST" action="controller/delete_user.php"  onclick="return confirm('Tem certeza que deseja excluir?');">
-                                <input type="hidden" name="id" value=<?= $data['id'] ?>>
+                                <input type="hidden" name="id" value="<?= $data['id'] ?>">
                                 <button class="btn btn-danger btn-xs">
                                     <i class="bi bi-trash"></i>
                                 </button>
@@ -114,9 +112,6 @@ $manager = new Manager();
          </div>
     </div>
 
-
-
-    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 </body>

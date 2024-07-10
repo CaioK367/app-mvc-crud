@@ -42,16 +42,17 @@
             $statement->execute();
         }
 
-        public function update_user($data){
+        public function update_user($data) {
             $pdo = parent::get_instance();
             $sql = "UPDATE cliente SET name = :name, email = :email, cpf = :cpf, birth = :birth, phone = :phone, address = :address WHERE id = :id";
-            var_dump($sql);
             $statement = $pdo->prepare($sql);
-            foreach ($data as $key => $value) {
-                $statement->bindValue(":$key", $value);
-            }
+            $statement->bindValue(":name", $data['name']);
+            $statement->bindValue(":email", $data['email']);
+            $statement->bindValue(":cpf", $data['cpf']);
+            $statement->bindValue(":birth", $data['birth']);
+            $statement->bindValue(":phone", $data['phone']);
+            $statement->bindValue(":address", $data['address']);
+            $statement->bindValue(":id", $data['id'], PDO::PARAM_INT);
             $statement->execute();
-
-
-        }        
+        }
     }
